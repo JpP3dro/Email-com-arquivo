@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Email PHP</title>
+</head>
+<body>
+
+
+ <div class="wrapper"> <!--Padronização para a página-->
+
+
+    <nav class="nav">
+        <div class="titulo">
+            <p>Enviando Email com PHP</p>
+        </div>
+    </nav>
+ 
+    <form action="enviar.php" method="post" enctype="multipart/form-data">
+    <div class="form-box">
+        <div class="login-container" id="login">
+            <div class="input-box">
+                <input type="email" class="input-field" placeholder="Digite seu email" name="email" required>
+                <i class="bx bx-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Digite o assunto do email" name="assunto" required>
+                <i class="bx bxs-envelope"></i>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Digite uma curta mensagem" name="mensagem" required>
+                <i class='bx bx-pencil'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="file" name="arquivo" class="file-field">
+                <i class='bx bx-file'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="submit" class="submit" value="Enviar">
+            </div>
+        </div>
+    </div>
+</div>   
+</form>
+</body>
+</html>
