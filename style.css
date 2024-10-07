@@ -9,7 +9,8 @@
 
 body{
     /*background: url("imagem/1.jpg"); talvez adicionar uma imagem decente*/
-    background-color: #0054b4;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(9,9,121,1) 42%, rgba(0,212,255,1) 100%);
     background-size: cover;
     background-attachment: fixed;
     overflow: hidden;
