@@ -14,7 +14,8 @@ require './biblioteca/vendor/autoload.php';
 $mail = new PHPMailer(true);
 try {
     //Configurações do SMTP
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     
+    //$mail->SMTPDebug = SMTP::DEBUG_SERVER; (deixe essa opção caso queira ver os detalhes do envio)
+    $mail->SMTPDebug = 0;                     
     $mail->isSMTP();                                            
     $mail->Host       = 'smtp.gmail.com';                     
     $mail->SMTPAuth   = true;
@@ -35,10 +36,10 @@ try {
     //Assunto, mensagem e a mensagem alternativa (caso o HTML não esteja funcionando)
     $mail->Subject = $assunto;
     $mail->Body    = $mensagem;
-    $mail->AltBody = $mensagem;
+    $mail->AltBody = strip_tags($mensagem);
 
     //Se o usuário tiver colocado um arquivo
-    if(isset($_FILES['arquivo'])){
+    if(isset($_FILES['arquivo']) && $_FILES['arquivo']['size'] > 0){
         //Pegando alguns atributos do arquivo e definindo o diretório
         $arquivo = $_FILES['arquivo'];
         $nome_arquivo = $arquivo['name'];
