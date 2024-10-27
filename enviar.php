@@ -4,6 +4,12 @@ $email = $_POST['email'];
 $assunto = $_POST['assunto'];
 $mensagem = $_POST['mensagem'];
 
+//Se o email for inválido
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo "Endereço de e-mail inválido";
+    exit;
+}
+
 //Importando as bibliotecas
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
