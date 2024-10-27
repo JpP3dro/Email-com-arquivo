@@ -30,7 +30,8 @@ try {
     $mail->Username   = 'example@gmail.com';                     
     $mail->Password   = 'app password';                               
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            
-    $mail->Port       = 587;          
+    $mail->Port       = 587;
+    $mail->Timeout = 60;          
     
     //Remetente e destinatário
     $mail->setFrom('example@gmail.com', 'Remetente');
@@ -46,15 +47,24 @@ try {
 
     //Se o usuário tiver colocado um arquivo
     if(isset($_FILES['arquivo']) && $_FILES['arquivo']['size'] > 0){
+
+        //Se não houve nenhum erro ao fazer o upload do arquivo
+        if ($_FILES['arquivo']['error'] === UPLOAD_ERR_OK) {
+
         //Pegando alguns atributos do arquivo e definindo o diretório
         $arquivo = $_FILES['arquivo'];
         $nome_arquivo = $arquivo['name'];
         $tmp_nome = $arquivo['tmp_name']; 
         $diretorio = "arquivos/"; 
+
         //Move o arquivo para a pasta criada para salvar os arquivos
         move_uploaded_file($tmp_nome, $diretorio . $nome_arquivo); 
+
         //Adiciona o arquivo ao email
-        $mail->addAttachment($diretorio . $nome_arquivo); 
+        $mail->addAttachment($diretorio . $nome_arquivo);  
+        } else {
+            echo "Erro ao fazer o upload do arquivo";
+        }
     }
     
     //Envia o email, exibe uma mensagem de sucesso e exclui o arquivo do diretório
