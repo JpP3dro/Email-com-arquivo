@@ -57,13 +57,13 @@ try {
         $mail->addAttachment($diretorio . $nome_arquivo); 
     }
     
-    //Envia o email e exibe uma mensagem de sucesso
+    //Envia o email, exibe uma mensagem de sucesso e exclui o arquivo do diretório
     $mail->send();
     echo "E-mail enviado com sucesso!";
+    unlink($diretorio . $nome_arquivo);
 } 
 catch (Exception $e) {
-    error_log("Erro ao enviar o e-mail: {$mail->ErrorInfo}");
-    echo "Ocorreu um erro ao enviar o e-mail. Tente novamente mais tarde!";
+    echo("Erro ao enviar o e-mail: {$mail->ErrorInfo}");
 }
 
 ?>
