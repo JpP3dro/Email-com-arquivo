@@ -56,7 +56,8 @@ try {
     echo "E-mail enviado com sucesso!";
 } 
 catch (Exception $e) {
-    echo "Erro ao enviar o e-mail: {$mail->ErrorInfo}";
+    error_log("Erro ao enviar o e-mail: {$mail->ErrorInfo}");
+    echo "Ocorreu um erro ao enviar o e-mail. Tente novamente mais tarde!";
 }
 
 ?>
