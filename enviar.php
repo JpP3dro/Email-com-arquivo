@@ -32,7 +32,6 @@ try {
     $mail->Password   = 'app password';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
-    $mail->Timeout = 60;
 
     //Remetente e destinatário
     $mail->setFrom('example@gmail.com', 'Remetente');
@@ -52,6 +51,14 @@ try {
         //Se não houve nenhum erro ao fazer o upload do arquivo
         if ($_FILES['arquivo']['error'] === UPLOAD_ERR_OK) {
 
+            //Pegando o arquivo e definindo um tamanho máximo para ele
+            $arquivo = $_FILES['arquivo'];
+            $tamanhoMaximo = 5 * 1024 * 1024; // 5MB
+            if ($arquivo['size'] > $tamanhoMaximo) {
+                echo "Arquivo muito grande. Tamanho máximo permitido é 5MB.";
+                exit;
+            }
+            
             //Se o diretório não existir, ele cria o diretório
             $diretorio = __DIR__ . "/arquivos/"; 
             if (!file_exists($diretorio)) {
@@ -59,7 +66,6 @@ try {
             }
 
             //Pegando alguns atributos do arquivo e definindo o diretório
-            $arquivo = $_FILES['arquivo'];
             $nome_arquivo = $arquivo['name'];
             $tmp_nome = $arquivo['tmp_name'];
             $diretorio = "arquivos/";
