@@ -26,6 +26,7 @@ try {
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
+    $mail->CharSet = 'UTF-8';
 
     //Conta e senha do email que vai enviar a mensagem
     $mail->Username   = 'example@gmail.com';
